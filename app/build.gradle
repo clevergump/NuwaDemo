@@ -1,0 +1,35 @@
+apply plugin: 'com.android.application'
+apply plugin: "cn.jiajixin.nuwa"
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "23.0.1"
+    defaultConfig {
+        applicationId "com.example.nuwa_demo"
+        minSdkVersion 14
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        debug {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        encoding "UTF-8"
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:22.2.1'
+    testCompile 'junit:junit:4.12'
+    compile 'cn.jiajixin.nuwa:nuwa:1.0.0'
+}
