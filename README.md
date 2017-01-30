@@ -96,10 +96,10 @@
 
  你可以根据你自己设定的 variant 对打包指令做出相应的修改.   
 
- 使用以上指令打出的补丁包名称都为 `patch.jar`, 补丁包的存放位置是: 我们自己module/build/outputs/nuwa文件夹.我们需要修改补丁包的名称, 使其与 java 代码中预先定义的补丁包名称相同. 例如: 我们这个demo就需要将补丁包更名为 `NuwaDemoPatch.jar`.   
+ 使用以上指令打出的补丁包名称都为 `patch.jar`, 补丁包的存放位置是: 我们自己module/build/outputs/nuwa文件夹.我们需要修改补丁包的名称, 使其与 java 代码中预先定义的补丁包名称相同. 例如: 我们这个demo中, 在 `DemoApplication.java` 中设置补丁文件的全路径名称为: `Environment.getExternalStorageDirectory().getAbsolutePath().concat("/NuwaDemoPatch.jar");` 那么我们就需要将补丁包更名为 `NuwaDemoPatch.jar`.   
 
    
-8. 模拟安装补丁的过程. 我们将补丁包通过 `adb push` 指令发送到手机上特定位置, 该位置需要与java代码中预先定义好的 patchFilePath 保持一致. 例如: 我们这个demo就需要将补丁包发送到手机 /sdcard/目录下.
+8. 模拟安装补丁的过程. 我们将补丁包通过 `adb push` 指令发送到手机上特定位置, 该位置需要与java代码中预先定义好的 patchFilePath 保持一致. 例如: 我们这个demo中, 在 `DemoApplication.java` 中设置补丁文件放置的路径为 `Environment.getExternalStorageDirectory().getAbsolutePath()`, 这往往也就是手机中的 /sdcard/ 路径, 所以我们需要将补丁包发送到手机 /sdcard/目录下.
 
 9. 重启APP, 补丁即可生效. 生效后, 界面上会显示如下文字, 表示补丁安装成功.    
 
@@ -143,3 +143,6 @@
    classpath 'com.github.dcendents:android-maven-gradle-plugin:1.3'
    classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.2'
    ```
+
+6. **org.gradle.api.file.UnableToDeleteFileException: Unable to delete directory: ...\NuwaDemo\app\build\outputs\apk**   
+	原因暂时未知, 但只需重启电脑即可. 注意: 只是重启Android Studio无效. 因为即使关闭Android Studio, 在文件夹中删除也会提示该异常.
